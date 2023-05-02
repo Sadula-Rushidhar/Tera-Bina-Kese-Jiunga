@@ -222,7 +222,7 @@ class MirrorLeechListener:
         if self.message.chat.type != 'private' and AUTO_DELETE_UPLOAD_MESSAGE_DURATION != -1 and reply_to is not None:
             try:
                 reply_to.delete()
-            except exception as err:
+            except Exception as err:
                 pass
         if self.isLeech:
             uptype = "files"
