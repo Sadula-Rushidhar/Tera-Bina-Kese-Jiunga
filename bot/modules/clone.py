@@ -19,7 +19,10 @@ def _clone(message, bot):
     if AUTO_DELETE_UPLOAD_MESSAGE_DURATION != -1:
         reply_to = message.reply_to_message
         if reply_to is not None:
-            reply_to.delete()
+            try:
+                reply_to.delete()
+            except:
+                pass
     if BOT_PM and message.chat.type != 'private':
         try:
             msg1 = f'Added your Requested link to Download\n'
@@ -131,9 +134,10 @@ def _clone(message, bot):
                 message.delete()
                 reply_to = message.reply_to_message
                 if reply_to is not None and AUTO_DELETE_UPLOAD_MESSAGE_DURATION == -1:
-                    reply_to.delete()
-
-
+                    try:
+                        reply_to.delete()
+                    except:
+                        pass
         else:
             drive = GoogleDriveHelper(name)
             gid = ''.join(SystemRandom().choices(ascii_letters + digits, k=12))
@@ -160,7 +164,10 @@ def _clone(message, bot):
                         message.delete()
                         reply_to = message.reply_to_message
                         if reply_to is not None and AUTO_DELETE_UPLOAD_MESSAGE_DURATION == -1:
-                            reply_to.delete()
+                            try:
+                                reply_to.delete()
+                            except:
+                                pass
 
                 else:
                     update_all_messages()
