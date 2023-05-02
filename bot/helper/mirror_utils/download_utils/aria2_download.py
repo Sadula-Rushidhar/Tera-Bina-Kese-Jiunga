@@ -196,7 +196,7 @@ def add_aria2c_download(link: str, path, listener, filename, auth, select, ratio
     if seed_time:
         args['seed-time'] = seed_time
     if is_magnet(link):
-        download = aria2.add_magnet(link, args)
+        return sendMessage("<b> ⚠️ Use /qb command for mirror or leeching torrent and magnet.</b>", listener.bot, listener.message)
     else:
         download = aria2.add_uris([link], args)
     if download.error_message:
