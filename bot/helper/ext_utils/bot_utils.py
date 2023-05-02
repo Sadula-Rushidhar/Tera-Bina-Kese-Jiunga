@@ -132,13 +132,13 @@ def get_readable_message():
                 globals()['COUNT'] -= STATUS_LIMIT
                 globals()['PAGE_NO'] -= 1
         for index, download in enumerate(list(download_dict.values())[COUNT:], start=1):
-            msg += f"<b>{escape(str(download.name()))}:</b> <code>{escape(str(download.name()))}</code>"
-            msg += f"\n<b>Engine:</b> {download.eng()}"
+            msg += f"<b>{download.status()}:</b> <code>{escape(str(download.name()))}</code>"
             if download.status() not in [MirrorStatus.STATUS_SPLITTING, MirrorStatus.STATUS_SEEDING]:
                 msg += f"\n{get_progress_bar_string(download)} {download.progress()}"
+                msg += f"\n<b>Engine:</b> {download.eng()}"
                 msg += f"\n<b>Processed:</b> {get_readable_file_size(download.processed_bytes())} of {download.size()}"
-                msg += f"\n<b>Speed:</b> {download.speed()} | <b>ETA:</b> {download.eta()}"
-                msg += f"\n<b>Time Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
+                msg += f"\n<b>Speed:</b> {download.speed()}"
+                msg += f"\n<b>ETA:</b> {download.eta()} | <b>Elapsed: </b>{get_readable_time(time() - download.message.date.timestamp())}"
                 if hasattr(download, 'seeders_num'):
                     try:
                         msg += f"\n<b>Seeders:</b> {download.seeders_num()} | <b>Leechers:</b> {download.leechers_num()}"
